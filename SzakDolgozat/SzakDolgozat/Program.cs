@@ -1,5 +1,8 @@
+using AutoMapper;
 using DataBase;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Services.Mapper;
 
 
 namespace SzakDolgozat
@@ -17,6 +20,8 @@ namespace SzakDolgozat
             });
 
             // Add services to the container.
+            //builder.Services.AddAutoMapper(typeof(Services.Mapper.Mapping).Assembly); Nem tudom miért, de ez nem jó
+            builder.Services.AddAutoMapper(cfg => cfg.AddProfile<Services.Mapper.Mapping>());
 
             builder.Services.AddControllers();
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi

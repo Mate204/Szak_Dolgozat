@@ -3,48 +3,92 @@
   "WorkspaceRootPath": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|c:\\dockumentumok\\c# programok\\szakdolgozat\\szak_dolgozat\\szakdolgozat\\database\\simplisharedbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|solutionrelative:database\\simplisharedbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A359D399-2C0D-4369-9A34-5767A2B6EBFD}|SzakDolgozat\\SzakDolgozat.csproj|c:\\dockumentumok\\c# programok\\szakdolgozat\\szak_dolgozat\\szakdolgozat\\szakdolgozat\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A359D399-2C0D-4369-9A34-5767A2B6EBFD}|SzakDolgozat\\SzakDolgozat.csproj|solutionrelative:szakdolgozat\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A359D399-2C0D-4369-9A34-5767A2B6EBFD}|SzakDolgozat\\SzakDolgozat.csproj|c:\\dockumentumok\\c# programok\\szakdolgozat\\szak_dolgozat\\szakdolgozat\\szakdolgozat\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{A359D399-2C0D-4369-9A34-5767A2B6EBFD}|SzakDolgozat\\SzakDolgozat.csproj|solutionrelative:szakdolgozat\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{B7B09F6F-B258-4813-B861-104356C5F17E}|Services\\Services.csproj|c:\\dockumentumok\\c# programok\\szakdolgozat\\szak_dolgozat\\szakdolgozat\\services\\mapper\\mapping.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B7B09F6F-B258-4813-B861-104356C5F17E}|Services\\Services.csproj|solutionrelative:services\\mapper\\mapping.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B7B09F6F-B258-4813-B861-104356C5F17E}|Services\\Services.csproj|c:\\dockumentumok\\c# programok\\szakdolgozat\\szak_dolgozat\\szakdolgozat\\services\\repositoris\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B7B09F6F-B258-4813-B861-104356C5F17E}|Services\\Services.csproj|solutionrelative:services\\repositoris\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B7B09F6F-B258-4813-B861-104356C5F17E}|Services\\Services.csproj|c:\\dockumentumok\\c# programok\\szakdolgozat\\szak_dolgozat\\szakdolgozat\\services\\repositoris\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B7B09F6F-B258-4813-B861-104356C5F17E}|Services\\Services.csproj|solutionrelative:services\\repositoris\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|c:\\dockumentumok\\c# programok\\szakdolgozat\\szak_dolgozat\\szakdolgozat\\database\\dtos\\postdto\\postgetdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|solutionrelative:database\\dtos\\postdto\\postgetdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|c:\\dockumentumok\\c# programok\\szakdolgozat\\szak_dolgozat\\szakdolgozat\\database\\models\\recommendationdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|solutionrelative:database\\models\\recommendationdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|c:\\dockumentumok\\c# programok\\szakdolgozat\\szak_dolgozat\\szakdolgozat\\database\\models\\posts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|solutionrelative:database\\models\\posts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|c:\\dockumentumok\\c# programok\\szakdolgozat\\szak_dolgozat\\szakdolgozat\\database\\dtos\\recommendationdto\\recommendationdatagetdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|solutionrelative:database\\dtos\\recommendationdto\\recommendationdatagetdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|c:\\dockumentumok\\c# programok\\szakdolgozat\\szak_dolgozat\\szakdolgozat\\database\\dtos\\recommendationdto\\recommendationcreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|solutionrelative:database\\dtos\\recommendationdto\\recommendationcreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|c:\\dockumentumok\\c# programok\\szakdolgozat\\szak_dolgozat\\szakdolgozat\\database\\dtos\\imagedto\\imageupdatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|solutionrelative:database\\dtos\\imagedto\\imageupdatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|c:\\dockumentumok\\c# programok\\szakdolgozat\\szak_dolgozat\\szakdolgozat\\database\\dtos\\imagedto\\imagegetdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|solutionrelative:database\\dtos\\imagedto\\imagegetdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|c:\\dockumentumok\\c# programok\\szakdolgozat\\szak_dolgozat\\szakdolgozat\\database\\dtos\\followdto\\followergetdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|solutionrelative:database\\dtos\\followdto\\followergetdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|c:\\dockumentumok\\c# programok\\szakdolgozat\\szak_dolgozat\\szakdolgozat\\database\\dtos\\likedto\\likegetdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|solutionrelative:database\\dtos\\likedto\\likegetdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|c:\\dockumentumok\\c# programok\\szakdolgozat\\szak_dolgozat\\szakdolgozat\\database\\dtos\\likedto\\likecreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|solutionrelative:database\\dtos\\likedto\\likecreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|c:\\dockumentumok\\c# programok\\szakdolgozat\\szak_dolgozat\\szakdolgozat\\database\\dtos\\followdto\\followrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|solutionrelative:database\\dtos\\followdto\\followrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|c:\\dockumentumok\\c# programok\\szakdolgozat\\szak_dolgozat\\szakdolgozat\\database\\dtos\\commentdto\\commentgetdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|solutionrelative:database\\dtos\\commentdto\\commentgetdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|c:\\dockumentumok\\c# programok\\szakdolgozat\\szak_dolgozat\\szakdolgozat\\database\\models\\comments.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|solutionrelative:database\\models\\comments.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|c:\\dockumentumok\\c# programok\\szakdolgozat\\szak_dolgozat\\szakdolgozat\\database\\models\\follows.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|solutionrelative:database\\models\\follows.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|c:\\dockumentumok\\c# programok\\szakdolgozat\\szak_dolgozat\\szakdolgozat\\database\\models\\imageembedding.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|solutionrelative:database\\models\\imageembedding.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|c:\\dockumentumok\\c# programok\\szakdolgozat\\szak_dolgozat\\szakdolgozat\\database\\dtos\\commentdto\\commentcreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|solutionrelative:database\\dtos\\commentdto\\commentcreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|c:\\dockumentumok\\c# programok\\szakdolgozat\\szak_dolgozat\\szakdolgozat\\database\\models\\likes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|solutionrelative:database\\models\\likes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|c:\\dockumentumok\\c# programok\\szakdolgozat\\szak_dolgozat\\szakdolgozat\\database\\dtos\\postdto\\postcreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|solutionrelative:database\\dtos\\postdto\\postcreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|c:\\dockumentumok\\c# programok\\szakdolgozat\\szak_dolgozat\\szakdolgozat\\database\\models\\posts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|solutionrelative:database\\models\\posts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|c:\\dockumentumok\\c# programok\\szakdolgozat\\szak_dolgozat\\szakdolgozat\\database\\models\\images.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|solutionrelative:database\\models\\images.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|c:\\dockumentumok\\c# programok\\szakdolgozat\\szak_dolgozat\\szakdolgozat\\database\\models\\users.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|solutionrelative:database\\models\\users.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|c:\\dockumentumok\\c# programok\\szakdolgozat\\szak_dolgozat\\szakdolgozat\\database\\simplisharedbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26E169E1-9C2B-452A-BD65-D248894C9E59}|DataBase\\DataBase.csproj|solutionrelative:database\\simplisharedbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -54,147 +98,290 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 21,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\SzakDolgozat\\appsettings.json",
-              "RelativeDocumentMoniker": "SzakDolgozat\\appsettings.json",
-              "ToolTip": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\SzakDolgozat\\appsettings.json",
-              "RelativeToolTip": "SzakDolgozat\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-09-29T11:05:26.283Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Posts.cs",
-              "DocumentMoniker": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Models\\Posts.cs",
-              "RelativeDocumentMoniker": "DataBase\\Models\\Posts.cs",
-              "ToolTip": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Models\\Posts.cs",
-              "RelativeToolTip": "DataBase\\Models\\Posts.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAYwAkAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-29T09:22:38.706Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "RecommendationData.cs",
-              "DocumentMoniker": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Models\\RecommendationData.cs",
-              "RelativeDocumentMoniker": "DataBase\\Models\\RecommendationData.cs",
-              "ToolTip": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Models\\RecommendationData.cs",
-              "RelativeToolTip": "DataBase\\Models\\RecommendationData.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA0AAAAOAAAAAAAAAA==",
+              "Title": "UnitOfWork.cs",
+              "DocumentMoniker": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\Services\\Repositoris\\UnitOfWork.cs",
+              "RelativeDocumentMoniker": "Services\\Repositoris\\UnitOfWork.cs",
+              "ToolTip": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\Services\\Repositoris\\UnitOfWork.cs",
+              "RelativeToolTip": "Services\\Repositoris\\UnitOfWork.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADAAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-29T09:39:30.305Z",
+              "WhenOpened": "2025-10-01T11:14:55.01Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "ImageEmbedding.cs",
-              "DocumentMoniker": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Models\\ImageEmbedding.cs",
-              "RelativeDocumentMoniker": "DataBase\\Models\\ImageEmbedding.cs",
-              "ToolTip": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Models\\ImageEmbedding.cs",
-              "RelativeToolTip": "DataBase\\Models\\ImageEmbedding.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAKAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "Repository.cs",
+              "DocumentMoniker": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\Services\\Repositoris\\Repository.cs",
+              "RelativeDocumentMoniker": "Services\\Repositoris\\Repository.cs",
+              "ToolTip": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\Services\\Repositoris\\Repository.cs",
+              "RelativeToolTip": "Services\\Repositoris\\Repository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-29T09:36:31.907Z",
+              "WhenOpened": "2025-10-01T11:13:22.039Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Likes.cs",
-              "DocumentMoniker": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Models\\Likes.cs",
-              "RelativeDocumentMoniker": "DataBase\\Models\\Likes.cs",
-              "ToolTip": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Models\\Likes.cs",
-              "RelativeToolTip": "DataBase\\Models\\Likes.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAKAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "Mapping.cs",
+              "DocumentMoniker": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\Services\\Mapper\\Mapping.cs",
+              "RelativeDocumentMoniker": "Services\\Mapper\\Mapping.cs",
+              "ToolTip": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\Services\\Mapper\\Mapping.cs",
+              "RelativeToolTip": "Services\\Mapper\\Mapping.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABAAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-29T09:35:18.737Z",
+              "WhenOpened": "2025-10-01T11:04:37.955Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "Comments.cs",
-              "DocumentMoniker": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Models\\Comments.cs",
-              "RelativeDocumentMoniker": "DataBase\\Models\\Comments.cs",
-              "ToolTip": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Models\\Comments.cs",
-              "RelativeToolTip": "DataBase\\Models\\Comments.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAzwAgAAAAKAAAAAAAAAA==",
+              "Title": "RecommendationData.cs",
+              "DocumentMoniker": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Models\\RecommendationData.cs",
+              "RelativeDocumentMoniker": "DataBase\\Models\\RecommendationData.cs",
+              "ToolTip": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Models\\RecommendationData.cs",
+              "RelativeToolTip": "DataBase\\Models\\RecommendationData.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-29T09:33:56.913Z",
+              "WhenOpened": "2025-10-01T11:00:33.358Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "RecommendationCreateDto.cs",
+              "DocumentMoniker": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Dtos\\RecommendationDto\\RecommendationCreateDto.cs",
+              "RelativeDocumentMoniker": "DataBase\\Dtos\\RecommendationDto\\RecommendationCreateDto.cs",
+              "ToolTip": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Dtos\\RecommendationDto\\RecommendationCreateDto.cs",
+              "RelativeToolTip": "DataBase\\Dtos\\RecommendationDto\\RecommendationCreateDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T11:00:11.516Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "Follows.cs",
-              "DocumentMoniker": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Models\\Follows.cs",
-              "RelativeDocumentMoniker": "DataBase\\Models\\Follows.cs",
-              "ToolTip": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Models\\Follows.cs",
-              "RelativeToolTip": "DataBase\\Models\\Follows.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAKAAAAAAAAAA==",
+              "Title": "RecommendationDataGetDto.cs",
+              "DocumentMoniker": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Dtos\\RecommendationDto\\RecommendationDataGetDto.cs",
+              "RelativeDocumentMoniker": "DataBase\\Dtos\\RecommendationDto\\RecommendationDataGetDto.cs",
+              "ToolTip": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Dtos\\RecommendationDto\\RecommendationDataGetDto.cs",
+              "RelativeToolTip": "DataBase\\Dtos\\RecommendationDto\\RecommendationDataGetDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-29T09:32:24.456Z",
+              "WhenOpened": "2025-10-01T10:57:25.997Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Images.cs",
-              "DocumentMoniker": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Models\\Images.cs",
-              "RelativeDocumentMoniker": "DataBase\\Models\\Images.cs",
-              "ToolTip": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Models\\Images.cs",
-              "RelativeToolTip": "DataBase\\Models\\Images.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAgAAAAKAAAAAAAAAA==",
+              "DocumentIndex": 8,
+              "Title": "ImageUpdateDto.cs",
+              "DocumentMoniker": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Dtos\\ImageDto\\ImageUpdateDto.cs",
+              "RelativeDocumentMoniker": "DataBase\\Dtos\\ImageDto\\ImageUpdateDto.cs",
+              "ToolTip": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Dtos\\ImageDto\\ImageUpdateDto.cs",
+              "RelativeToolTip": "DataBase\\Dtos\\ImageDto\\ImageUpdateDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-29T09:30:26.783Z",
+              "WhenOpened": "2025-10-01T10:56:14.256Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 10,
-              "Title": "Users.cs",
-              "DocumentMoniker": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Models\\Users.cs",
-              "RelativeDocumentMoniker": "DataBase\\Models\\Users.cs",
-              "ToolTip": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Models\\Users.cs",
-              "RelativeToolTip": "DataBase\\Models\\Users.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAKAAAAAAAAAA==",
+              "Title": "FollowerGetDto.cs",
+              "DocumentMoniker": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Dtos\\FollowDto\\FollowerGetDto.cs",
+              "RelativeDocumentMoniker": "DataBase\\Dtos\\FollowDto\\FollowerGetDto.cs",
+              "ToolTip": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Dtos\\FollowDto\\FollowerGetDto.cs",
+              "RelativeToolTip": "DataBase\\Dtos\\FollowDto\\FollowerGetDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-29T09:11:23.317Z",
+              "WhenOpened": "2025-10-01T10:53:12.695Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 13,
+              "Title": "FollowRequestDto.cs",
+              "DocumentMoniker": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Dtos\\FollowDto\\FollowRequestDto.cs",
+              "RelativeDocumentMoniker": "DataBase\\Dtos\\FollowDto\\FollowRequestDto.cs",
+              "ToolTip": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Dtos\\FollowDto\\FollowRequestDto.cs",
+              "RelativeToolTip": "DataBase\\Dtos\\FollowDto\\FollowRequestDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T10:51:28.936Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "LikeCreateDto.cs",
+              "DocumentMoniker": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Dtos\\LikeDto\\LikeCreateDto.cs",
+              "RelativeDocumentMoniker": "DataBase\\Dtos\\LikeDto\\LikeCreateDto.cs",
+              "ToolTip": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Dtos\\LikeDto\\LikeCreateDto.cs",
+              "RelativeToolTip": "DataBase\\Dtos\\LikeDto\\LikeCreateDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T10:48:55.784Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Comments.cs",
+              "DocumentMoniker": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Models\\Comments.cs",
+              "RelativeDocumentMoniker": "DataBase\\Models\\Comments.cs",
+              "ToolTip": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Models\\Comments.cs",
+              "RelativeToolTip": "DataBase\\Models\\Comments.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T10:46:14.503Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "CommentCreateDto.cs",
+              "DocumentMoniker": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Dtos\\CommentDto\\CommentCreateDto.cs",
+              "RelativeDocumentMoniker": "DataBase\\Dtos\\CommentDto\\CommentCreateDto.cs",
+              "ToolTip": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Dtos\\CommentDto\\CommentCreateDto.cs",
+              "RelativeToolTip": "DataBase\\Dtos\\CommentDto\\CommentCreateDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T10:45:43.485Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Likes.cs",
+              "DocumentMoniker": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Models\\Likes.cs",
+              "RelativeDocumentMoniker": "DataBase\\Models\\Likes.cs",
+              "ToolTip": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Models\\Likes.cs",
+              "RelativeToolTip": "DataBase\\Models\\Likes.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T10:20:28.063Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "LikeGetDto.cs",
+              "DocumentMoniker": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Dtos\\LikeDto\\LikeGetDto.cs",
+              "RelativeDocumentMoniker": "DataBase\\Dtos\\LikeDto\\LikeGetDto.cs",
+              "ToolTip": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Dtos\\LikeDto\\LikeGetDto.cs",
+              "RelativeToolTip": "DataBase\\Dtos\\LikeDto\\LikeGetDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABRAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T10:20:18.333Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "CommentGetDto.cs",
+              "DocumentMoniker": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Dtos\\CommentDto\\CommentGetDto.cs",
+              "RelativeDocumentMoniker": "DataBase\\Dtos\\CommentDto\\CommentGetDto.cs",
+              "ToolTip": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Dtos\\CommentDto\\CommentGetDto.cs",
+              "RelativeToolTip": "DataBase\\Dtos\\CommentDto\\CommentGetDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T10:17:37.357Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ImageGetDto.cs",
+              "DocumentMoniker": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Dtos\\ImageDto\\ImageGetDto.cs",
+              "RelativeDocumentMoniker": "DataBase\\Dtos\\ImageDto\\ImageGetDto.cs",
+              "ToolTip": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Dtos\\ImageDto\\ImageGetDto.cs",
+              "RelativeToolTip": "DataBase\\Dtos\\ImageDto\\ImageGetDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T10:09:07.48Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PostGetDto.cs",
+              "DocumentMoniker": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Dtos\\PostDto\\PostGetDto.cs",
+              "RelativeDocumentMoniker": "DataBase\\Dtos\\PostDto\\PostGetDto.cs",
+              "ToolTip": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Dtos\\PostDto\\PostGetDto.cs",
+              "RelativeToolTip": "DataBase\\Dtos\\PostDto\\PostGetDto.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAwBkAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T10:08:11.208Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "PostCreateDto.cs",
+              "DocumentMoniker": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Dtos\\PostDto\\PostCreateDto.cs",
+              "RelativeDocumentMoniker": "DataBase\\Dtos\\PostDto\\PostCreateDto.cs",
+              "ToolTip": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Dtos\\PostDto\\PostCreateDto.cs",
+              "RelativeToolTip": "DataBase\\Dtos\\PostDto\\PostCreateDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T09:58:41.441Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Images.cs",
+              "DocumentMoniker": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Models\\Images.cs",
+              "RelativeDocumentMoniker": "DataBase\\Models\\Images.cs",
+              "ToolTip": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Models\\Images.cs",
+              "RelativeToolTip": "DataBase\\Models\\Images.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T10:03:24.039Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Posts.cs",
+              "DocumentMoniker": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Models\\Posts.cs",
+              "RelativeDocumentMoniker": "DataBase\\Models\\Posts.cs",
+              "ToolTip": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\Models\\Posts.cs",
+              "RelativeToolTip": "DataBase\\Models\\Posts.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwBwAAABNAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-01T10:00:36.769Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
               "Title": "SimpliShareDbContext.cs",
               "DocumentMoniker": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\SimpliShareDbContext.cs",
               "RelativeDocumentMoniker": "DataBase\\SimpliShareDbContext.cs",
               "ToolTip": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\SimpliShareDbContext.cs",
               "RelativeToolTip": "DataBase\\SimpliShareDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJUAAAA4AAAAAAAAAA==",
+              "ViewState": "AgIAAFUAAAAAAAAAAAAcwGcAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-29T09:09:10.139Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\SzakDolgozat\\Program.cs",
               "RelativeDocumentMoniker": "SzakDolgozat\\Program.cs",
               "ToolTip": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\SzakDolgozat\\Program.cs",
               "RelativeToolTip": "SzakDolgozat\\Program.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAzwBIAAAAtAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAgwBYAAAB1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-29T08:26:30.926Z",
               "EditorCaption": ""
