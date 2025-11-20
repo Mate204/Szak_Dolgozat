@@ -1,4 +1,5 @@
-﻿using DataBase.Models;
+﻿using DataBase.Dtos.ImageDto;
+using DataBase.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,11 @@ namespace DataBase.Dtos.PostDto
 {
     public class PostCreateDto
     {
-        string Title { get; set; }
-        string? Content { get; set; }
-        ICollection<Images>? Images { get; set; }
-        ContentType ContentType { get; set; }
+        public string Title { get; set; }
+        public string? Content { get; set; }
+        public int UserId { get; set; }
+        public ICollection<ImageGetDto>? Images { get; set; } = new List<ImageGetDto>();
+        public ContentType ContentType { get; set; }
 
     }
 }

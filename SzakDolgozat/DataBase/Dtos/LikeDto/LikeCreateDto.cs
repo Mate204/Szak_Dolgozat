@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace DataBase.Dtos.LikeDto
 {
-    public class LikeCreateDto
+    public class LikeDtos
     {
         public int PostId { get; set; }
+        public int UserId { get; set; }
     }
 }

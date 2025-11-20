@@ -11,8 +11,8 @@ namespace DataBase.Dtos.CommentDto
     {
         public int Id { get; set; }
         public int UserId { get; set; }
-        public UserPublicGetDto User { get; set; }
-        public string TextContent { get; set; }
+        public UserPublicGetDto? User { get; set; } = null;
+        public string TextContent { get; set; } = string.Empty;
         public DateTime UploadDate { get; set; }
         public int PostId { get; set; }
     }

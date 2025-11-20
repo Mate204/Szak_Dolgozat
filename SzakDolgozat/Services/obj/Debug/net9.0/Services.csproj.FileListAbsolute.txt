@@ -12,3 +12,7 @@ C:\Dockumentumok\C# programok\SzakDolgozat\Szak_Dolgozat\SzakDolgozat\Services\o
 C:\Dockumentumok\C# programok\SzakDolgozat\Szak_Dolgozat\SzakDolgozat\Services\obj\Debug\net9.0\Services.pdb
 C:\Dockumentumok\C# programok\SzakDolgozat\Szak_Dolgozat\SzakDolgozat\Services\obj\Debug\net9.0\Services.genruntimeconfig.cache
 C:\Dockumentumok\C# programok\SzakDolgozat\Szak_Dolgozat\SzakDolgozat\Services\obj\Debug\net9.0\ref\Services.dll
+C:\Dockumentumok\C# programok\SzakDolgozat\Szak_Dolgozat\SzakDolgozat\Services\bin\Debug\net9.0\DataBase.dll
+C:\Dockumentumok\C# programok\SzakDolgozat\Szak_Dolgozat\SzakDolgozat\Services\bin\Debug\net9.0\DataBase.pdb
+C:\Dockumentumok\C# programok\SzakDolgozat\Szak_Dolgozat\SzakDolgozat\Services\obj\Debug\net9.0\Services.sourcelink.json
+C:\Dockumentumok\C# programok\SzakDolgozat\Szak_Dolgozat\SzakDolgozat\Services\obj\Debug\net9.0\Services.csproj.Up2Date

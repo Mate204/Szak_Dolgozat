@@ -19,8 +19,9 @@ namespace Services.Repositoris
         IRepository<Follows> FollowsRepository { get; }
         IRepository<ImageEmbedding> ImageEmbeddingRepository { get; }
         IRepository<RecommendationData> RecommendationDataRepository { get; }
+        Task<int> SaveAsync();
     }
-    public class UnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly SimpliShareDbContext _context;
         public IRepository<Users> UsersRepository { get; }

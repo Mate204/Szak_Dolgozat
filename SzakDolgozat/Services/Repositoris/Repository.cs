@@ -6,12 +6,13 @@ namespace Services.Repositories;
 
 public interface IRepository<T> where T : class
 {
-    Task<IEnumerable<T>> GetAsync(Expression<Func<T, bool>> predicate, string[]? includeProperties = null);
+    Task<IEnumerable<T>> GetAsync(Expression<Func<T, bool>> predicate, string[]? includeProperties = null, Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null, int? skip = null, int? take = null);
     Task<T?> GetByIdAsync(object[] keyValues, string[]? includeReferences = null, string[]? includeCollections = null);
     Task<IEnumerable<T>> GetAllAsync(string[]? includeProperties = null);
     Task InsertAsync(T entity);
     Task DeleteAsync(params object[] keyValues);
     Task UpdateAsync(T entity);
+    Task<int> CountAsync(Expression<Func<T, bool>>? predicate = null);
 }
 
 public class Repository<T> : IRepository<T> where T : class
@@ -25,7 +26,7 @@ public class Repository<T> : IRepository<T> where T : class
         _dbSet = _context.Set<T>();
     }
 
-    public async Task<IEnumerable<T>> GetAsync(Expression<Func<T, bool>> predicate, string[]? includeProperties = null)
+    public async Task<IEnumerable<T>> GetAsync(Expression<Func<T, bool>> predicate, string[]? includeProperties = null, Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null, int? skip = null,int ? take = null)
     {
         IQueryable<T> query = _dbSet;
         query = query.Where(predicate);
@@ -36,6 +37,21 @@ public class Repository<T> : IRepository<T> where T : class
             {
                 query = query.Include(includeProperty);
             }
+        }
+        if (orderBy != null)
+        {
+            query = orderBy(query);
+        }
+
+        // LAPOZÁS (Pagination) LOGIKA
+        if (skip.HasValue)
+        {
+            query = query.Skip(skip.Value);
+        }
+
+        if (take.HasValue)
+        {
+            query = query.Take(take.Value);
         }
 
         return await query.ToListAsync();
@@ -49,16 +65,16 @@ public class Repository<T> : IRepository<T> where T : class
             return null;
         }
 
-        List<Task> tasks = new List<Task>();
+        //List<Task> tasks = new List<Task>();
 
         if (includeReferences != null)
         {
             foreach (var includeReference in includeReferences)
             {
-                tasks.Add(_context
+                await _context
                     .Entry(entity)
                     .Reference(includeReference)
-                    .LoadAsync());
+                    .LoadAsync();
             }
         }
 
@@ -66,14 +82,14 @@ public class Repository<T> : IRepository<T> where T : class
         {
             foreach (var includeCollection in includeCollections)
             {
-                tasks.Add(_context
+                await _context
                     .Entry(entity)
                     .Collection(includeCollection)
-                    .LoadAsync());
+                    .LoadAsync();
             }
         }
 
-        await Task.WhenAll(tasks);
+        //await Task.WhenAll(tasks);
         return entity;
     }
 
@@ -113,5 +129,14 @@ public class Repository<T> : IRepository<T> where T : class
     {
         await Task.Run(() => _dbSet.Update(entity));
         await Task.CompletedTask;
+    }
+
+    public async Task<int> CountAsync(Expression<Func<T, bool>>? predicate = null)
+    {
+        if (predicate == null)
+        {
+            return await _dbSet.CountAsync();
+        }
+        return await _dbSet.CountAsync(predicate);
     }
 }

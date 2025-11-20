@@ -8,7 +8,7 @@ namespace DataBase.Dtos.ImageDto
 {
     public class ImageGetDto
     {
-        public int Id { get; set; }
+        
         public string ImageUrl { get; set; }
         public int OrderIndex { get; set; }
         public string? Description { get; set; }

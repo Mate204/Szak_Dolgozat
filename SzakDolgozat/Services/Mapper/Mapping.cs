@@ -27,12 +27,14 @@ namespace Services.Mapper
             // Users -> UserPublicGetDto (Publikus adat)
             CreateMap<Users, UserPublicGetDto>()
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => $"{src.FirstName} {src.LastName}"));
-            
+            CreateMap<Users, UserPrivateGetDto>()
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => $"{src.FirstName} {src.LastName}"));
 
             // --- IMAGES (Képek) ---
 
             // Images -> ImageGetDto
             CreateMap<Images, ImageGetDto>();
+            
 
             // --- POSTS (Posztok) ---
 
