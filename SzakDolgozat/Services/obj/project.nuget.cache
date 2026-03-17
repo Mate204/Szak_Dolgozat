@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/rGOa59SnlE=",
+  "dgSpecHash": "3RkiRK0MxV8=",
   "success": true,
-  "projectFilePath": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\Services\\Services.csproj",
+  "projectFilePath": "C:\\Dockumentumok\\C programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\Services\\Services.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Szabo Mate\\.nuget\\packages\\automapper\\14.0.0\\automapper.14.0.0.nupkg.sha512",
     "C:\\Users\\Szabo Mate\\.nuget\\packages\\azure.core\\1.47.3\\azure.core.1.47.3.nupkg.sha512",

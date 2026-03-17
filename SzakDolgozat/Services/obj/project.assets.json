@@ -5613,11 +5613,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\Services\\Services.csproj",
+      "projectUniqueName": "C:\\Dockumentumok\\C programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\Services\\Services.csproj",
       "projectName": "Services",
-      "projectPath": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\Services\\Services.csproj",
+      "projectPath": "C:\\Dockumentumok\\C programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\Services\\Services.csproj",
       "packagesPath": "C:\\Users\\Szabo Mate\\.nuget\\packages\\",
-      "outputPath": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\Services\\obj\\",
+      "outputPath": "C:\\Dockumentumok\\C programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\Services\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -5638,8 +5638,8 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\DataBase.csproj": {
-              "projectPath": "C:\\Dockumentumok\\C# programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\DataBase.csproj"
+            "C:\\Dockumentumok\\C programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\DataBase.csproj": {
+              "projectPath": "C:\\Dockumentumok\\C programok\\SzakDolgozat\\Szak_Dolgozat\\SzakDolgozat\\DataBase\\DataBase.csproj"
             }
           }
         }
@@ -5733,7 +5733,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.311/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
