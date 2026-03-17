@@ -1,0 +1,110 @@
+/* Feed Page Styles */
+
+.feed-layout {
+    min-height: 100vh;
+    background-color: var(--bg-secondary);
+}
+
+.feed-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px 16px;
+}
+
+.feed-content {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.feed-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+}
+
+/* Loading State */
+.feed-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    gap: 16px;
+}
+
+.feed-loading p {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+/* Error State */
+.feed-error {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.feed-error p {
+    color: var(--error);
+    margin-bottom: 16px;
+    font-size: 14px;
+}
+
+/* Empty State */
+.feed-empty {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: var(--bg-primary);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+}
+
+.feed-empty h3 {
+    font-size: 20px;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.feed-empty p {
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+    font-size: 14px;
+}
+
+/* Posts List */
+.posts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Temporary placeholder for posts (we'll replace this with PostCard component) */
+.post-card-placeholder {
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+}
+
+.post-card-placeholder h3 {
+    font-size: 18px;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.post-card-placeholder p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.post-card-placeholder small {
+    color: var(--text-tertiary);
+    font-size: 12px;
+}
+
+/* Load More Button */
+.load-more-btn {
+    width: 100%;
+    margin-top: 16px;
+}

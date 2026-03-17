@@ -19,17 +19,20 @@ namespace SzakDolgozat.Controllers
         private readonly IPostServise _postServise;
         private readonly IMapper _mapper;
         private readonly IFileServise _fileServise;
-        public PostController(IPostServise postServise, IMapper mapper, IFileServise fileServise)
+        private readonly IVisionServise _visionServise;
+        public PostController(IPostServise postServise, IMapper mapper, IFileServise fileServise, IVisionServise visionServise)
         {
             _postServise = postServise;
             _mapper = mapper;
             _fileServise = fileServise;
+            _visionServise = visionServise;
         }
 
         [HttpPost]
         public async Task<IActionResult> CreatePost([FromForm] PostCreateDto postCreateDto, IFormFile[] images)
         {
             ServiceResult<List<string>>? savedImagePaths = null;
+            List<string> allDetectedTags = new List<string>();
             if (images != null && images.Length > 0)
             {
                 savedImagePaths = await _fileServise.SaveImagesAsync(images, "post-images");
@@ -38,12 +41,26 @@ namespace SzakDolgozat.Controllers
                     return BadRequest(savedImagePaths.Message);
                 }
 
+                foreach (var image in images) 
+                {
+                    using var ms = new MemoryStream();
+                    await image.CopyToAsync(ms);
+                    byte[] imageBytes = ms.ToArray();
+
+                    var tags = await _visionServise.GetTagsAsync(imageBytes);
+                    allDetectedTags.AddRange(tags);
+
+                }
+                postCreateDto.Tags = allDetectedTags.Distinct().ToList();
+
                 postCreateDto.Images = savedImagePaths.Data.Select((path, index) => new ImageGetDto 
                 {
                     ImageUrl = path,
                     OrderIndex = index + 1
 
                 }).ToList();
+
+
             }
 
             var createdPost = await _postServise.CreatePostAsync(postCreateDto);
@@ -59,9 +76,9 @@ namespace SzakDolgozat.Controllers
         }
 
         [HttpGet("{postid:int}")]
-        public async Task<IActionResult> GetPostById(int id)
+        public async Task<IActionResult> GetPostById(int postid)
         {
-            var post = await _postServise.GetPostByIdAsync(id);
+            var post = await _postServise.GetPostByIdAsync(postid);
             if (post == null)
             {
                 return NotFound();
@@ -86,9 +103,9 @@ namespace SzakDolgozat.Controllers
             return Ok(updateResult.Data);
         }
         [HttpDelete("{postid:int}")]
-        public async Task<IActionResult> DeletePost(int id)
+        public async Task<IActionResult> DeletePost(int postid)
         {
-            var deleteResult = await _postServise.DeletePostAsync(id);
+            var deleteResult = await _postServise.DeletePostAsync(postid);
             if (!deleteResult.IsSuccess)
             {
                 return BadRequest(deleteResult.Message);
@@ -130,9 +147,9 @@ namespace SzakDolgozat.Controllers
         }
 
         [HttpPost("{postid:int}/comment")]
-        public async Task<IActionResult> AddComment(int id, [FromBody] CommentCreateDto commentCreateDto)
+        public async Task<IActionResult> AddComment(int postid, [FromBody] CommentCreateDto commentCreateDto)
         {
-            var commentResult = await _postServise.AddCommentAsync(id, commentCreateDto);
+            var commentResult = await _postServise.AddCommentAsync(postid, commentCreateDto);
             if (!commentResult.IsSuccess)
             {
                 return BadRequest(commentResult.Message);
@@ -155,9 +172,9 @@ namespace SzakDolgozat.Controllers
 
 
         [HttpGet("comment/{commentid:int}")]
-        public async Task<IActionResult> GetComment(int id) 
+        public async Task<IActionResult> GetComment(int postid) 
         {
-            var comment = await _postServise.GetCommentAsync(id);
+            var comment = await _postServise.GetCommentAsync(postid);
             if (!comment.IsSuccess) 
             {
                 return BadRequest(comment.Message);
