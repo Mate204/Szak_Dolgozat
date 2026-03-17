@@ -20,6 +20,7 @@ namespace DataBase.Dtos.PostDto
         public ContentType ContentType { get; set; }
         public DateTime UploadDate { get; set; }
         public ICollection<ImageGetDto>? Images { get; set; }
+        public ICollection<CommentGetDto>? Comments { get; set; }
 
         public int LikeCount { get; set; }
         public int CommentCount { get; set; }

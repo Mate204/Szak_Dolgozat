@@ -13,6 +13,7 @@ public interface IRepository<T> where T : class
     Task DeleteAsync(params object[] keyValues);
     Task UpdateAsync(T entity);
     Task<int> CountAsync(Expression<Func<T, bool>>? predicate = null);
+    IQueryable<T> GetQueryable();
 }
 
 public class Repository<T> : IRepository<T> where T : class
@@ -138,5 +139,10 @@ public class Repository<T> : IRepository<T> where T : class
             return await _dbSet.CountAsync();
         }
         return await _dbSet.CountAsync(predicate);
+    }
+
+    public  IQueryable<T> GetQueryable()
+    {
+        return _dbSet.AsQueryable();
     }
 }

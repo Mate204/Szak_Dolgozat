@@ -19,6 +19,8 @@ namespace Services.Repositoris
         IRepository<Follows> FollowsRepository { get; }
         IRepository<ImageEmbedding> ImageEmbeddingRepository { get; }
         IRepository<RecommendationData> RecommendationDataRepository { get; }
+        IRepository<Tags> TagsRepository { get; }
+        IRepository<PostTags> PostTagsRepository {  get; }
         Task<int> SaveAsync();
     }
     public class UnitOfWork : IUnitOfWork
@@ -32,6 +34,8 @@ namespace Services.Repositoris
         public IRepository<Follows> FollowsRepository { get; }
         public IRepository<ImageEmbedding> ImageEmbeddingRepository { get; }
         public IRepository<RecommendationData> RecommendationDataRepository { get; }
+        public IRepository<Tags> TagsRepository { get; }
+        public IRepository<PostTags> PostTagsRepository { get; }
         public UnitOfWork(SimpliShareDbContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
@@ -43,6 +47,8 @@ namespace Services.Repositoris
             FollowsRepository = new Repository<Follows>(context);
             ImageEmbeddingRepository = new Repository<ImageEmbedding>(context);
             RecommendationDataRepository = new Repository<RecommendationData>(context);
+            TagsRepository = new Repository<Tags>(context);
+            PostsRepository = new Repository<Posts>(context);
         }
         public async Task<int> SaveAsync()
         {

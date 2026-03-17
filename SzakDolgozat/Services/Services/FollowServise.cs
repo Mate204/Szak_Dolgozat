@@ -29,10 +29,12 @@ namespace Services.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        public FollowServise(IUnitOfWork unitOfWork, IMapper mapper)
+        private readonly IRecommendationService _recommendationService;
+        public FollowServise(IUnitOfWork unitOfWork, IMapper mapper, IRecommendationService recommendationService)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            _recommendationService = recommendationService ?? throw new ArgumentNullException(nameof(recommendationService));
         }
 
         public async Task<ServiceResult<FollowerGetDto>> FollowUser(int followerId, int followedId)
@@ -67,6 +69,7 @@ namespace Services.Services
             try
             {
                 await _unitOfWork.FollowsRepository.InsertAsync(newFollow);
+                await _recommendationService.UpdateUserPreferenceAsync(followerId, followedId, InteractionType.Follow);
                 await _unitOfWork.SaveAsync();
                 var followDto = _mapper.Map<FollowerGetDto>(newFollow);
                 return ServiceResult<FollowerGetDto>.Success(followDto, "Following was succesfull.");
@@ -137,10 +140,14 @@ namespace Services.Services
 
             var follow = await _unitOfWork.FollowsRepository.GetAsync(
                 f => f.FollowerId == followerId && f.FollowedId == followedId);
+            var followDto = new FollowerGetDto();
 
-            var followDto = _mapper.Map<FollowerGetDto>(follow);
+
             if (follow.Any())
             {
+                var user = await _unitOfWork.UsersRepository.GetByIdAsync(new object[] { follow.FirstOrDefault().FollowedId });
+                followDto.User = _mapper.Map<UserPublicGetDto>(user);
+                followDto.IsFollowedByMe = true;
 
                 return ServiceResult<FollowerGetDto>.Success(followDto, "The user is following the other user"); // true a válasz
             }
@@ -165,6 +172,7 @@ namespace Services.Services
             try
             {
                 await _unitOfWork.FollowsRepository.DeleteAsync(followerId, followedId);
+                await _recommendationService.UpdateUserPreferenceAsync(followerId, followedId, InteractionType.Follow, true);
                 await _unitOfWork.SaveAsync();
                 var followDto = _mapper.Map<FollowerGetDto>(follow);
                 return ServiceResult<FollowerGetDto>.Success(followDto,"Unfollow was succesfull.");

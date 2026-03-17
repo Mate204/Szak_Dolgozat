@@ -117,7 +117,9 @@ namespace Services.Services
             {
                 return await Task.FromResult<UserPrivateGetDto>(null);
             }
-            var user = await _unitOfWork.UsersRepository.GetByIdAsync(new object[] { userId }, new string[] { "Posts", "Followers", "Following", "Comments", "Likes" });
+            var user = await _unitOfWork.UsersRepository.GetByIdAsync(new object[] { userId },
+                includeReferences : null,
+                includeCollections: new string[] { "Posts", "Followers", "Following", "Comments", "Likes" });
 
             return _mapper.Map<UserPrivateGetDto>(user);
         }
@@ -128,7 +130,9 @@ namespace Services.Services
             {
                 return await Task.FromResult<UserPublicGetDto>(null);
             }
-            var user = await _unitOfWork.UsersRepository.GetByIdAsync(new object[] { userId }, new string[] { "Posts", "Followers", "Following", "Comments", "Likes" });
+            var user = await _unitOfWork.UsersRepository.GetByIdAsync(new object[] { userId },
+                includeReferences: null,
+                includeCollections: new string[] { "Posts", "Followers", "Following", "Comments", "Likes" });
 
             return _mapper.Map<UserPublicGetDto>(user);
         }

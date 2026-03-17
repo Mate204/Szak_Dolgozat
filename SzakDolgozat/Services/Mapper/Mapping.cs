@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DataBase.Dtos;
 using DataBase.Dtos.CommentDto;
+using DataBase.Dtos.FollowDto;
 using DataBase.Dtos.ImageDto;
 using DataBase.Dtos.LikeDto;
 using DataBase.Dtos.PostDto;
@@ -65,6 +66,10 @@ namespace Services.Mapper
 
             // Likes -> LikeGetDto
             CreateMap<Likes, LikeGetDto>();
+
+            
+           
+
         }
     }
 }

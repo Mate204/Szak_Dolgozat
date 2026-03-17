@@ -4,6 +4,7 @@ using DataBase;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataBase.Migrations
 {
     [DbContext(typeof(SimpliShareDbContext))]
-    partial class SimpliShareDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260205103340_Tags")]
+    partial class Tags
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -132,21 +135,6 @@ namespace DataBase.Migrations
                     b.ToTable("Likes");
                 });
 
-            modelBuilder.Entity("DataBase.Models.PostTags", b =>
-                {
-                    b.Property<int>("PostId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TagId")
-                        .HasColumnType("int");
-
-                    b.HasKey("PostId", "TagId");
-
-                    b.HasIndex("TagId");
-
-                    b.ToTable("PostTags");
-                });
-
             modelBuilder.Entity("DataBase.Models.Posts", b =>
                 {
                     b.Property<int>("Id")
@@ -177,9 +165,6 @@ namespace DataBase.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.Property<byte[]>("VectorData")
-                        .HasColumnType("varbinary(max)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
@@ -205,26 +190,6 @@ namespace DataBase.Migrations
                     b.HasKey("UserId", "ContentTag", "InteractionType");
 
                     b.ToTable("RecommendationData");
-                });
-
-            modelBuilder.Entity("DataBase.Models.Tags", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Name")
-                        .IsUnique();
-
-                    b.ToTable("Tags");
                 });
 
             modelBuilder.Entity("DataBase.Models.Users", b =>
@@ -356,25 +321,6 @@ namespace DataBase.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("DataBase.Models.PostTags", b =>
-                {
-                    b.HasOne("DataBase.Models.Posts", "Post")
-                        .WithMany("PostTags")
-                        .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("DataBase.Models.Tags", "Tag")
-                        .WithMany("PostsTags")
-                        .HasForeignKey("TagId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Post");
-
-                    b.Navigation("Tag");
-                });
-
             modelBuilder.Entity("DataBase.Models.Posts", b =>
                 {
                     b.HasOne("DataBase.Models.Users", "User")
@@ -409,13 +355,6 @@ namespace DataBase.Migrations
                     b.Navigation("Images");
 
                     b.Navigation("Likes");
-
-                    b.Navigation("PostTags");
-                });
-
-            modelBuilder.Entity("DataBase.Models.Tags", b =>
-                {
-                    b.Navigation("PostsTags");
                 });
 
             modelBuilder.Entity("DataBase.Models.Users", b =>

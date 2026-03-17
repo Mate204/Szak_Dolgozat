@@ -18,6 +18,8 @@ namespace DataBase
         public DbSet<Follows> Follows { get; set; } 
         public DbSet<ImageEmbedding> ImageEmbedding { get; set; }
         public DbSet<RecommendationData> RecommendationData { get; set; }
+        public DbSet<PostTags> PostTags { get; set; }
+        public DbSet<Tags> Tags { get; set; }
         public SimpliShareDbContext(DbContextOptions<SimpliShareDbContext> options) : base(options)
         {
             
@@ -150,7 +152,29 @@ namespace DataBase
                       .OnDelete(DeleteBehavior.Restrict);
             });
 
+            modelBuilder.Entity<PostTags>(entity =>
+            {
+                entity.HasKey(e => new
+                {
+                    e.PostId,
+                    e.TagId
+                });
+                entity.HasOne(e => e.Post)
+                        .WithMany(p => p.PostTags)
+                        .HasForeignKey(e => e.PostId)
+                        .OnDelete(DeleteBehavior.Restrict);
+                entity.HasOne(e => e.Tag)
+                      .WithMany(t => t.PostsTags)
+                      .HasForeignKey(e => e.TagId)
+                      .OnDelete(DeleteBehavior.Restrict);
+            });
 
+            modelBuilder.Entity<Tags>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Name).IsRequired();
+                entity.HasIndex(e => e.Name).IsUnique();
+            });
         }
     }
 }

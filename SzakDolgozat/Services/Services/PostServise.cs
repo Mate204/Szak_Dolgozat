@@ -34,10 +34,15 @@ namespace Services.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        public PostServise(IUnitOfWork unitOfWork, IMapper mapper)
+        private readonly IVisionServise _visionServise;
+        private readonly IRecommendationService _recommendationService;
+
+        public PostServise(IUnitOfWork unitOfWork, IMapper mapper, IVisionServise visionServise, IRecommendationService recommendationService)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _visionServise = visionServise;
+            _recommendationService = recommendationService;
         }
 
         public async Task<ServiceResult<CommentCreateDto>> AddCommentAsync(int postId, CommentCreateDto commentCreate)
@@ -69,6 +74,7 @@ namespace Services.Services
             {
                 await _unitOfWork.CommentsRepository.InsertAsync(comment);
                 await _unitOfWork.SaveAsync();
+                await _recommendationService.UpdateUserPreferenceAsync(commentCreate.UserId, postId, InteractionType.Comment);
                 return ServiceResult<CommentCreateDto>.Success(commentCreate, "Comment added successfully");
             }
             catch (Exception ex)
@@ -111,6 +117,7 @@ namespace Services.Services
                 ContentType = postCreateDto.ContentType,
                 UploadDate = DateTime.UtcNow,
                 Images = new List<Images>(),
+                PostTags = new List<PostTags>(),
                 //Images = _mapper.Map<IEnumerable<Images>>(postCreateDto.Images) ?? new List<Images>(),
                 Deleted = false
             };
@@ -130,8 +137,30 @@ namespace Services.Services
                 }
             }
 
+
+
             try
             {
+                if (postCreateDto.Tags != null && postCreateDto.Tags.Any())
+                {
+                    foreach (var tag in postCreateDto.Tags)
+                    {
+                        var existingTag =( await _unitOfWork.TagsRepository.GetAsync(t => t.Name == tag)).FirstOrDefault();
+
+                        if (existingTag == null)
+                        {
+                            existingTag = new Tags { Name = tag };
+                                
+                            await _unitOfWork.TagsRepository.InsertAsync(existingTag);
+                            await _unitOfWork.SaveAsync();
+                        }
+                        
+                        newPost.PostTags.Add(new PostTags { TagId = existingTag.Id, Post = newPost });
+
+                    }
+                }
+
+
                 await _unitOfWork.PostsRepository.InsertAsync(newPost);
                 await _unitOfWork.SaveAsync();
                 return ServiceResult<PostGetDto>.Success(_mapper.Map<PostGetDto>(newPost), "Post created successfully");
@@ -191,36 +220,38 @@ namespace Services.Services
             
             var followedUserIds = await GetFollowedUserIdsAsync(userId);
 
-           
+
             var feedUserIds = followedUserIds.ToList();
+            feedUserIds.Add(userId); // Include own posts
 
-            feedUserIds.Add(userId);
-
-            
             int itemsToSkip = (pageNumber - 1) * pageSize;
 
-            var posts = await _unitOfWork.PostsRepository.GetAsync(
-                // Szűrés: Csak a követett felhasználók és a saját posztok, amik nincsenek törölve.
+            // Get posts from followed users first
+            var followedPosts = await _unitOfWork.PostsRepository.GetAsync(
                 predicate: p => feedUserIds.Contains(p.UserId) && !p.Deleted,
-
-                // Rendezés: Legújabb posztok elöl (dátum szerint csökkenő sorrendben).
                 orderBy: q => q.OrderByDescending(p => p.UploadDate),
-
-                // Include: Töltjük be a szükséges navigációs tulajdonságokat.
-                includeProperties: new string[] { "User", "Images", "Likes", "Comments" },
-
-                // Lapozás (Pagination)
-                skip: itemsToSkip,
-                take: pageSize
+                includeProperties: new string[] { "User", "Images", "Likes", "Comments" }
             );
 
-            
-            if (posts == null || !posts.Any())
+            // Get posts from other users
+            var otherPosts = await _unitOfWork.PostsRepository.GetAsync(
+                predicate: p => !feedUserIds.Contains(p.UserId) && !p.Deleted,
+                orderBy: q => q.OrderByDescending(p => p.UploadDate),
+                includeProperties: new string[] { "User", "Images", "Likes", "Comments" }
+            );
+
+            // Combine: followed posts first, then others
+            var allPosts = followedPosts.Concat(otherPosts)
+                .Skip(itemsToSkip)
+                .Take(pageSize)
+                .ToList();
+
+            if (!allPosts.Any())
             {
                 return Enumerable.Empty<PostGetDto>();
             }
 
-            var postGetDtos = _mapper.Map<IEnumerable<PostGetDto>>(posts);
+            var postGetDtos = _mapper.Map<IEnumerable<PostGetDto>>(allPosts);
             return postGetDtos;
         }
 
@@ -281,6 +312,7 @@ namespace Services.Services
                 await _unitOfWork.LikesRepository.InsertAsync(newlike);
                 await _unitOfWork.SaveAsync();
                 var postGetDto = _mapper.Map<PostGetDto>(post);
+                await _recommendationService.UpdateUserPreferenceAsync(likeCreateDto.UserId, likeCreateDto.PostId, InteractionType.Like);
                 return ServiceResult<PostGetDto>.Success(postGetDto, "Post liked successfully");
             }
             catch (Exception ex)
@@ -296,6 +328,7 @@ namespace Services.Services
             {
                 await _unitOfWork.LikesRepository.DeleteAsync(likeDto.UserId,likeDto.PostId);
                 await _unitOfWork.SaveAsync();
+                await _recommendationService.UpdateUserPreferenceAsync(likeDto.UserId, likeDto.PostId, InteractionType.Like, isRemoval: true);
                 return ServiceResult<PostGetDto>.Success(null, "Post unliked successfully");
             }
             catch (Exception ex)
