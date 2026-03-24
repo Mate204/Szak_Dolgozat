@@ -10,6 +10,7 @@ import FollowList from './pages/FollowList';
 import Following from './pages/Following';
 import Explore from './pages/Explore';
 import Settings from './pages/Settings';
+import SearchResults from './pages/SearchResults';
 
 // Protected Route Component - only accessible when logged in
 function ProtectedRoute({ children }) {
@@ -93,6 +94,14 @@ function AppContent() {
                 element={
                     <ProtectedRoute>
                         <Settings />
+                    </ProtectedRoute>
+                }
+            />
+            <Route
+                path="/SearchResults"
+                element={
+                    <ProtectedRoute>
+                        <SearchResults />
                     </ProtectedRoute>
                 }
             />

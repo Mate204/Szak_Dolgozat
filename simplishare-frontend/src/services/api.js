@@ -160,4 +160,31 @@ export const followAPI = {
     }),
 };
 
+// ========== SEARCH API CALLS ==========
+export const searchAPI = {
+    searchByText: (query) =>
+        api.get('/Search/text', { params: { query } }),
+
+    searchByImage: (imageFile) => {
+        const formData = new FormData();
+        formData.append('imageFile', imageFile);
+        return api.post('/Search/image', formData, {
+            headers: { 'Content-Type': 'multipart/form-data' },
+        });
+    },
+};
+
+// ========== TRENDING API CALLS ==========
+export const trendingAPI = {
+    // period: 0=Daily, 1=Weekly, 2=Monthly (based on your TrendingPeriod enum)
+    getTrending: (period = 1) =>
+        api.get('/Trending', { params: { period } }),
+};
+
+// ========== RECOMMENDATION API CALLS ==========
+export const recommendationAPI = {
+    getDiscoverFeed: (count = 20) =>
+        api.get('/Recommendation/discover', { params: { count } }),
+};
+
 export default api;

@@ -26,6 +26,7 @@ function Feed() {
             setLoading(true);
             setError(null);
             const response = await postAPI.getFeed(user.id, pageNumber, pageSize);
+            console.log('First post isLikedByUser:', response.data[0]?.isLikedByUser);
             setPosts(response.data);
         } catch (err) {
             setError('Failed to load feed. Please try again.');
@@ -40,9 +41,13 @@ function Feed() {
         setIsCreateModalOpen(true);
     };
 
-    const handlePostCreated = () => {
-        // Refresh feed after creating a post
-        setPageNumber(1);
+        const handlePostCreated = () => {
+            setPageNumber(1);
+            setPosts([]); // Clear first so pageNumber=1 triggers fresh fetch
+
+        };
+
+    const handlePostDeleted = () => {
         fetchFeed();
     };
 
@@ -96,7 +101,7 @@ function Feed() {
                                 <PostCard
                                     key={post.id}
                                     post={post}
-                                    onUpdate={fetchFeed}
+                                    onUpdate={handlePostDeleted}
                                 />
                             ))}
                         </div>
@@ -116,5 +121,6 @@ function Feed() {
         </div>
     );
 }
+
 
 export default Feed;

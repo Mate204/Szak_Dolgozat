@@ -1,89 +1,117 @@
-// Post Card Component - displays a single post
+// Post Card Component
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { postAPI } from '../services/api';
-import { Heart, MessageCircle, ChevronLeft, ChevronRight, X, Trash2, MoreVertical  } from 'lucide-react';
-import { Link } from 'react-router-dom';  // ADD THIS LINE
+import { Heart, ChevronLeft, ChevronRight, X, Trash2, MoreVertical, Send } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import './PostCard.css';
 
 function PostCard({ post, onUpdate }) {
     const { user } = useAuth();
+
+    // Initialize like state directly from post prop - backend now sets this correctly
     const [isLiked, setIsLiked] = useState(post.isLikedByUser || false);
     const [likeCount, setLikeCount] = useState(post.likeCount || 0);
-    const [showComments, setShowComments] = useState(false);
+    const [likeLoading, setLikeLoading] = useState(false);
+
+    // Comments state
     const [comments, setComments] = useState([]);
+    const [commentsLoaded, setCommentsLoaded] = useState(false);
     const [loadingComments, setLoadingComments] = useState(false);
     const [commentText, setCommentText] = useState('');
     const [submittingComment, setSubmittingComment] = useState(false);
+
+    // Image state
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [showImageModal, setShowImageModal] = useState(false);
+
+    // Post menu state
     const [showPostMenu, setShowPostMenu] = useState(false);
     const [deleting, setDeleting] = useState(false);
 
     const hasImages = post.images && post.images.length > 0;
     const hasMultipleImages = post.images && post.images.length > 1;
-    const isOwnPost = user.id === post.user?.id;
+    const isOwnPost = user?.id === post.user?.id;
 
-    // Fetch comments when comments section is opened
+
+
+    // Load comments once on first render
     useEffect(() => {
-        if (showComments && comments.length === 0 && post.commentCount > 0) {
-            fetchComments();
-        }
-    }, [showComments]);
+        loadComments();
+    }, [post.id]);
 
-    // Fetch comments for this post (by re-fetching the full post)
-    const fetchComments = async () => {
+    const loadComments = async () => {
+        if (commentsLoaded) return;
         try {
             setLoadingComments(true);
             const response = await postAPI.getPost(post.id);
-            // The post should include comments array from backend
-            if (response.data.data?.comments) {
-                setComments(response.data.data.comments);
-            } else if (response.data.comments) {
-                setComments(response.data.comments);
+            const data = response.data;
+            const postData = data.data || data;
+            // ONLY set comments - never touch like state here
+            if (postData?.comments) {
+                setComments(postData.comments);
             }
+            setCommentsLoaded(true);
         } catch (error) {
-            console.error('Error fetching comments:', error);
+            console.error('Error loading comments:', error);
         } finally {
             setLoadingComments(false);
         }
     };
 
-    // Handle like/unlike
+    const resolveImageUrl = (url) => {
+        if (!url) return '';
+        if (url.startsWith('http://') || url.startsWith('https://')) return url;
+        return `https://localhost:7114${url}`;
+    };
+
+    // ── Like handler with optimistic update ──
     const handleLike = async () => {
+        if (likeLoading) return;
+        setLikeLoading(true);
+
+        // Save current state for rollback
+        const previousIsLiked = isLiked;
+        const previousLikeCount = likeCount;
+
+        // Optimistic update - update UI immediately
+        setIsLiked(!previousIsLiked);
+        setLikeCount(prev => previousIsLiked ? prev - 1 : prev + 1);
+
         try {
-            if (isLiked) {
+            if (previousIsLiked) {
                 await postAPI.unlikePost({ userId: user.id, postId: post.id });
-                setIsLiked(false);
-                setLikeCount(likeCount - 1);
             } else {
                 await postAPI.likePost({ userId: user.id, postId: post.id });
-                setIsLiked(true);
-                setLikeCount(likeCount + 1);
             }
+            // Success - keep the optimistic update, don't refetch
         } catch (error) {
             console.error('Error toggling like:', error);
+            // Revert on error
+            setIsLiked(previousIsLiked);
+            setLikeCount(previousLikeCount);
+        } finally {
+            setLikeLoading(false);
         }
     };
 
-    // Handle comment submission
+    // ── Comment handlers ──
     const handleCommentSubmit = async (e) => {
         e.preventDefault();
-        if (!commentText.trim()) return;
+        if (!commentText.trim() || submittingComment) return;
+
+        const text = commentText.trim();
+        setCommentText('');
 
         try {
             setSubmittingComment(true);
-            const response = await postAPI.addComment(post.id, {
+            await postAPI.addComment(post.id, {
                 userId: user.id,
                 postId: post.id,
-                textContent: commentText,
+                textContent: text,
             });
-
-            setCommentText('');
-
-            // Add the new comment to the local state instead of refetching
-            const newComment = {
-                id: Date.now(), // Temporary ID
+            setComments(prev => [...prev, {
+                id: Date.now(),
                 userId: user.id,
                 user: {
                     id: user.id,
@@ -91,52 +119,48 @@ function PostCard({ post, onUpdate }) {
                     lastName: user.lastName,
                     name: user.name
                 },
-                textContent: commentText,
+                textContent: text,
                 uploadDate: new Date().toISOString(),
                 postId: post.id
-            };
-
-            setComments([...comments, newComment]);
-
-            // Don't call onUpdate to avoid page refresh
+            }]);
         } catch (error) {
             console.error('Error adding comment:', error);
+            setCommentText(text);
         } finally {
             setSubmittingComment(false);
         }
     };
 
-    // Delete post
-    const handleDeletePost = async () => {
-        if (!window.confirm('Are you sure you want to delete this post?')) {
-            return;
+    const handleDeleteComment = async (commentId) => {
+        try {
+            await postAPI.deleteComment(commentId);
+            setComments(prev => prev.filter(c => c.id !== commentId));
+        } catch (error) {
+            console.error('Error deleting comment:', error);
         }
+    };
 
+    // ── Post delete ──
+    const handleDeletePost = async () => {
+        if (!window.confirm('Are you sure you want to delete this post?')) return;
         try {
             setDeleting(true);
             await postAPI.deletePost(post.id);
-            if (onUpdate) {
-                onUpdate();
-            }
+            if (onUpdate) onUpdate();
         } catch (error) {
             console.error('Error deleting post:', error);
-            alert('Failed to delete post. Please try again.');
+            alert('Failed to delete post.');
         } finally {
             setDeleting(false);
             setShowPostMenu(false);
         }
     };
 
-    // Navigate images in gallery
-    const nextImage = () => {
-        setCurrentImageIndex((prev) => (prev + 1) % post.images.length);
-    };
+    // ── Image navigation ──
+    const nextImage = () => setCurrentImageIndex(prev => (prev + 1) % post.images.length);
+    const prevImage = () => setCurrentImageIndex(prev => (prev - 1 + post.images.length) % post.images.length);
 
-    const prevImage = () => {
-        setCurrentImageIndex((prev) => (prev - 1 + post.images.length) % post.images.length);
-    };
-
-    // Format date
+    // ── Date formatter ──
     const formatDate = (dateString) => {
         const date = new Date(dateString);
         const now = new Date();
@@ -144,7 +168,6 @@ function PostCard({ post, onUpdate }) {
         const diffMins = Math.floor(diffMs / 60000);
         const diffHours = Math.floor(diffMs / 3600000);
         const diffDays = Math.floor(diffMs / 86400000);
-
         if (diffMins < 1) return 'Just now';
         if (diffMins < 60) return `${diffMins}m ago`;
         if (diffHours < 24) return `${diffHours}h ago`;
@@ -155,7 +178,7 @@ function PostCard({ post, onUpdate }) {
     return (
         <>
             <article className="post-card">
-                {/* Post Header */}
+                {/* Header */}
                 <div className="post-header">
                     <Link to={`/profile/${post.user?.id}`} className="post-author">
                         <div className="author-avatar">
@@ -166,14 +189,9 @@ function PostCard({ post, onUpdate }) {
                             <p className="post-time">{formatDate(post.uploadDate)}</p>
                         </div>
                     </Link>
-
-                    {/* Post Menu (only for own posts) */}
                     {isOwnPost && (
                         <div className="post-menu">
-                            <button
-                                className="post-menu-btn"
-                                onClick={() => setShowPostMenu(!showPostMenu)}
-                            >
+                            <button className="post-menu-btn" onClick={() => setShowPostMenu(!showPostMenu)}>
                                 <MoreVertical size={20} />
                             </button>
                             {showPostMenu && (
@@ -192,115 +210,70 @@ function PostCard({ post, onUpdate }) {
                     )}
                 </div>
 
-                {/* Post Title */}
+                {/* Title */}
                 <h3 className="post-title">{post.title}</h3>
 
-                {/* Post Images */}
-                {hasImages && (
-                    <div className="post-images">
-                        <div
-                            className="post-image-container"
-                            onClick={() => setShowImageModal(true)}
-                        >
-                            <img
-                                src={post.images[currentImageIndex].imageUrl}
-                                alt={post.images[currentImageIndex].description || post.title}
-                                className="post-image"
-                            />
-                            {hasMultipleImages && (
-                                <>
-                                    <button
-                                        className="image-nav-btn prev-btn"
-                                        onClick={(e) => {
-                                            e.stopPropagation();
-                                            prevImage();
-                                        }}
-                                    >
-                                        <ChevronLeft size={24} />
-                                    </button>
-                                    <button
-                                        className="image-nav-btn next-btn"
-                                        onClick={(e) => {
-                                            e.stopPropagation();
-                                            nextImage();
-                                        }}
-                                    >
-                                        <ChevronRight size={24} />
-                                    </button>
-                                    <div className="image-indicator">
-                                        {currentImageIndex + 1} / {post.images.length}
-                                    </div>
-                                </>
-                            )}
+                {/* Body: media + comments */}
+                <div className="post-body">
+
+                    {/* Left: media + like */}
+                    <div className="post-media">
+                        {hasImages && (
+                            <div className="post-images">
+                                <div
+                                    className="post-image-container"
+                                    onClick={() => setShowImageModal(true)}
+                                >
+                                    <img
+                                        src={resolveImageUrl(post.images[currentImageIndex].imageUrl)}
+                                        alt={post.images[currentImageIndex].description || post.title}
+                                        className="post-image"
+                                    />
+                                    {hasMultipleImages && (
+                                        <>
+                                            <button className="image-nav-btn prev-btn" onClick={(e) => { e.stopPropagation(); prevImage(); }}>
+                                                <ChevronLeft size={20} />
+                                            </button>
+                                            <button className="image-nav-btn next-btn" onClick={(e) => { e.stopPropagation(); nextImage(); }}>
+                                                <ChevronRight size={20} />
+                                            </button>
+                                            <div className="image-indicator">
+                                                {currentImageIndex + 1} / {post.images.length}
+                                            </div>
+                                        </>
+                                    )}
+                                </div>
+                            </div>
+                        )}
+
+                        {post.textContent && (
+                            <p className="post-content">{post.textContent}</p>
+                        )}
+
+                        <div className="post-actions">
+                            <button
+                                className={`action-btn ${isLiked ? 'liked' : ''}`}
+                                onClick={handleLike}
+                                disabled={likeLoading}
+                            >
+                                <Heart size={20} fill={isLiked ? 'currentColor' : 'none'} />
+                                <span>{likeCount}</span>
+                            </button>
                         </div>
                     </div>
-                )}
 
-                {/* Post Text Content */}
-                {post.textContent && (
-                    <p className="post-content">{post.textContent}</p>
-                )}
-
-                {/* Post Actions */}
-                <div className="post-actions">
-                    <button
-                        className={`action-btn ${isLiked ? 'liked' : ''}`}
-                        onClick={handleLike}
-                    >
-                        <Heart size={20} fill={isLiked ? 'currentColor' : 'none'} />
-                        <span>{likeCount}</span>
-                    </button>
-
-                    <button
-                        className="action-btn"
-                        onClick={() => setShowComments(!showComments)}
-                    >
-                        <MessageCircle size={20} />
-                        <span>{post.commentCount}</span>
-                    </button>
-                </div>
-
-                {/* Comments Section */}
-                {showComments && (
-                    <div className="comments-section">
-                        <div className="comments-header">
-                            <h4>Comments</h4>
+                    {/* Right: comments panel */}
+                    <div className="comments-panel">
+                        <div className="comments-panel-header">
+                            Comments ({comments.length})
                         </div>
-
-                        {/* Add Comment Form */}
-                        <form onSubmit={handleCommentSubmit} className="comment-form">
-                            <input
-                                type="text"
-                                value={commentText}
-                                onChange={(e) => setCommentText(e.target.value)}
-                                placeholder="Write a comment..."
-                                className="comment-input"
-                                disabled={submittingComment}
-                            />
-                            <button
-                                type="submit"
-                                className="btn btn-primary btn-sm"
-                                disabled={submittingComment || !commentText.trim()}
-                            >
-                                {submittingComment ? 'Posting...' : 'Post'}
-                            </button>
-                        </form>
-
-                        {/* Comments List - Placeholder for now */}
-                        <div className="comments-list">
+                        <div className="comments-panel-list">
                             {loadingComments ? (
-                                <div className="comments-loading">
-                                    <div className="spinner-small"></div>
-                                    <span>Loading comments...</span>
-                                </div>
+                                <div className="comments-empty">Loading...</div>
                             ) : comments.length === 0 ? (
-                                <p className="text-secondary text-sm">
-                                    {post.commentCount === 0
-                                        ? 'No comments yet. Be the first to comment!'
-                                        : 'Click to load comments'}
-                                </p>
+                                <div className="comments-empty">No comments yet. Be the first!</div>
                             ) : (
-                                comments.map((comment) => (
+                                comments.map(comment => (
                                     <div key={comment.id} className="comment-item">
                                         <div className="comment-avatar">
                                             {comment.user?.firstName?.charAt(0)}{comment.user?.lastName?.charAt(0)}
@@ -312,32 +285,49 @@ function PostCard({ post, onUpdate }) {
                                             </div>
                                             <p className="comment-text">{comment.textContent}</p>
                                         </div>
-                                        {comment.userId === user.id && (
+                                        {comment.userId === user?.id && (
                                             <button
                                                 className="comment-delete-btn"
                                                 onClick={() => handleDeleteComment(comment.id)}
-                                                title="Delete comment"
                                             >
-                                                <Trash2 size={14} />
+                                                <Trash2 size={12} />
                                             </button>
                                         )}
                                     </div>
                                 ))
                             )}
                         </div>
+                        <form onSubmit={handleCommentSubmit} className="comments-panel-input">
+                            <input
+                                type="text"
+                                value={commentText}
+                                onChange={(e) => setCommentText(e.target.value)}
+                                placeholder="Add a comment..."
+                                className="comment-input"
+                                disabled={submittingComment}
+                            />
+                            <button
+                                type="submit"
+                                className="comment-submit-btn"
+                                disabled={submittingComment || !commentText.trim()}
+                            >
+                                <Send size={14} />
+                            </button>
+                        </form>
                     </div>
-                )}
+
+                </div>
             </article>
 
-            {/* Image Modal (Full Screen) */}
-            {showImageModal && (
+            {/* Image Modal */}
+            {showImageModal && hasImages && (
                 <div className="image-modal" onClick={() => setShowImageModal(false)}>
                     <button className="modal-close-btn" onClick={() => setShowImageModal(false)}>
                         <X size={24} />
                     </button>
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                         <img
-                            src={post.images[currentImageIndex].imageUrl}
+                            src={resolveImageUrl(post.images[currentImageIndex].imageUrl)}
                             alt={post.images[currentImageIndex].description || post.title}
                             className="modal-image"
                         />
