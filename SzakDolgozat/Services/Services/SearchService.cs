@@ -14,7 +14,7 @@ namespace Services.Services
 {
     public interface ISearchService
     {
-        Task<IEnumerable<PostGetDto>> ComplexTextSearchAsync(string query);
+        Task<IEnumerable<PostGetDto>> ComplexTextSearchAsync(string query, int currentUserId = 0);
         Task<IEnumerable<PostGetDto>> SearchByImageAsync(IFormFile imageFile);
     }
     public class SearchService : ISearchService
@@ -30,13 +30,17 @@ namespace Services.Services
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        public async Task<IEnumerable<PostGetDto>> ComplexTextSearchAsync(string query)
+        public async Task<IEnumerable<PostGetDto>> ComplexTextSearchAsync(string query, int currentUserId = 0)
         {
             var words = query.ToLower().Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
             var postsQuery =  _unitOfWork.PostsRepository.GetQueryable()
                 .Include(p => p.PostTags)
                 .ThenInclude(pt => pt.Tag)
+                .Include(p => p.User)
+                .Include(p => p.Images)
+                .Include(p => p.Comments)
+                .Include(p => p.Likes)
             .AsQueryable(); 
 
             foreach (var word in words)
@@ -49,7 +53,17 @@ namespace Services.Services
             }
 
             var results = await postsQuery.ToListAsync();
-            return _mapper.Map<List<PostGetDto>>(results);
+            var dtos = _mapper.Map<List<PostGetDto>>(results);
+
+            if (currentUserId > 0)
+            {
+                for (int i = 0; i < results.Count; i++)
+                {
+                    dtos[i].IsLikedByUser = results[i].Likes.Any(l => l.UserId == currentUserId);
+                }
+            }
+
+            return dtos;
         }
 
         public async Task<IEnumerable<PostGetDto>> SearchByImageAsync(IFormFile imageFile)
@@ -65,21 +79,24 @@ namespace Services.Services
             var response = await _httpClient.PostAsync(LocalAiUrl, content);
             if (!response.IsSuccessStatusCode)
             {
-                return new List<PostGetDto>(); // Vagy dobhatsz hibát is
+                return new List<PostGetDto>();
             }
 
             
             var aiTags = await response.Content.ReadFromJsonAsync<List<string>>();
             if (aiTags == null || !aiTags.Any()) return new List<PostGetDto>();
 
-            // 4. Keresés az adatbázisban a kapott címkék alapján
-            // Olyan posztokat keresünk, amik legalább EGY címkében egyeznek
+            
             var postsQuery = _unitOfWork.PostsRepository.GetQueryable()
-                .Include(p => p.PostTags).ThenInclude(pt => pt.Tag)
+                .Include(p => p.PostTags)
+                .ThenInclude(pt => pt.Tag)
+                .Include(p => p.User)
+                .Include(p => p.Images)
+                .Include(p => p.Likes)
+                .Include(p => p.Comments)
                 .AsQueryable();
 
-            // Relevancia szerinti szűrés: Azokat a posztokat gyűjtjük ki, 
-            // amik tartalmazzák valamelyik AI által talált címkét
+            
             var results = await postsQuery
                 .Where(p => p.PostTags.Any(pt => aiTags.Contains(pt.Tag.Name.ToLower())))
                 .ToListAsync();

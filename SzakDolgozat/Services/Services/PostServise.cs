@@ -18,7 +18,7 @@ namespace Services.Services
     public interface IPostServise
     {
         public Task<ServiceResult<PostGetDto>> CreatePostAsync(PostCreateDto postCreateDto);
-        public Task<ServiceResult<PostGetDto>> GetPostByIdAsync(int postId);
+        public Task<ServiceResult<PostGetDto>> GetPostByIdAsync(int postId, int curuntUserId =0);
         public Task<IEnumerable<PostGetDto>> GetPostByUserIdAsync(int userId);
         public Task<ServiceResult<PostGetDto>> UpdatePostAsync(int postId, PostUpdateDto postUpdateDto);
         public Task<ServiceResult<PostGetDto>> DeletePostAsync(int postId);
@@ -251,7 +251,13 @@ namespace Services.Services
                 return Enumerable.Empty<PostGetDto>();
             }
 
-            var postGetDtos = _mapper.Map<IEnumerable<PostGetDto>>(allPosts);
+            var postGetDtos = _mapper.Map<List<PostGetDto>>(allPosts);
+
+            for (int i = 0; i < allPosts.Count; i++)
+            {
+                postGetDtos[i].IsLikedByUser = allPosts[i].Likes.Any(l => l.UserId == userId);
+            }
+
             return postGetDtos;
         }
 
@@ -265,26 +271,38 @@ namespace Services.Services
 
         }
 
-        public async Task<ServiceResult<PostGetDto>> GetPostByIdAsync(int postId)
+        public async Task<ServiceResult<PostGetDto>> GetPostByIdAsync(int postId, int currentUserId = 0)
         {
-            var post = await _unitOfWork.PostsRepository.GetByIdAsync(new object[] { postId }, includeReferences: new string[] { "User" }, includeCollections: new string[] { "Images", "Likes", "Comments" });
+            var post = await _unitOfWork.PostsRepository.GetByIdAsync(new object[] { postId },
+                includeReferences: new string[] { "User" },
+                includeCollections: new string[] { "Images", "Likes", "Comments" });
             if (post == null || post.Deleted)
             {
                 return ServiceResult<PostGetDto>.Failure("Post not found");
             }
             var postGetDto = _mapper.Map<PostGetDto>(post);
+            if(currentUserId > 0)
+            {
+                postGetDto.IsLikedByUser = post.Likes.Any(l => l.UserId == currentUserId);
+            }
             return ServiceResult<PostGetDto>.Success(postGetDto, "Post retrieved successfully");
             
         }
 
         public async Task<IEnumerable<PostGetDto>> GetPostByUserIdAsync(int userId)
         {
-            var posts = await _unitOfWork.PostsRepository.GetAsync(p => p.UserId == userId && !p.Deleted, includeProperties: new string[] { "User", "Images", "Likes", "Comments" });
+            var posts = await _unitOfWork.PostsRepository.GetAsync(p => p.UserId == userId && !p.Deleted,
+                includeProperties: new string[] { "User", "Images", "Likes", "Comments" });
             if (posts == null || !posts.Any())
             {
                 return Enumerable.Empty<PostGetDto>();
             }
-            var postGetDtos = _mapper.Map<IEnumerable<PostGetDto>>(posts);
+            var postList = posts.ToList();
+            var postGetDtos = _mapper.Map<List<PostGetDto>>(posts);
+            for (int i = 0; i < postList.Count; i++)
+            {
+                postGetDtos[i].IsLikedByUser = postList[i].Likes.Any(l => l.UserId == userId);
+            }
             return postGetDtos;
             
         }

@@ -30,29 +30,40 @@ namespace Services.Services
         }
         public async Task<IEnumerable<PostGetDto>> GetDiscoverFeedAsync(int userId, int count = 20)
         {
-            var userPref = await _unitOfWork.RecommendationDataRepository.GetQueryable()
+            var userPrefs = await _unitOfWork.RecommendationDataRepository.GetQueryable()
                 .Where(r => r.UserId == userId)
-                .ToDictionaryAsync(r => r.ContentTag.ToLower(), r => r.Score);
+                .GroupBy(r => r.ContentTag.ToLower())
+                .Select(g => new
+                {
+                    Tag = g.Key,
+                    TotalScore = g.Sum(r => r.Score)
+                })
+                .ToDictionaryAsync(x => x.Tag, x => x.TotalScore);
 
-            var postsQuery = _unitOfWork.PostsRepository.GetQueryable()
+            var posts = await _unitOfWork.PostsRepository.GetQueryable()
                 .Include(p => p.PostTags)
-                .ThenInclude(pt => pt.Tag)
+                    .ThenInclude(pt => pt.Tag)
                 .Include(p => p.Images)
+                .Include(p => p.Likes) 
                 .Include(p => p.Comments)
-                .Where(p => p.UserId != userId);
-            
-            var posts = await postsQuery.ToListAsync();
+                .Where(p => p.UserId != userId)
+                .ToListAsync();
 
+            
             var scoredPosts = posts.Select(post =>
             {
                 float tagScore = post.PostTags
-                .Where(pt => userPref.ContainsKey(pt.Tag.Name.ToLower()))
-                .Sum(pt => userPref[pt.Tag.Name.ToLower()]);
+                    .Where(pt => userPrefs.ContainsKey(pt.Tag.Name.ToLower()))
+                    .Sum(pt => userPrefs[pt.Tag.Name.ToLower()]);
 
-                float popularityScore = (post.Likes.Count * 5.0f) + (post.Comments.Count * 8.0f);
+                
+                int likesCount = post.Likes?.Count ?? 0;
+                int commentsCount = post.Comments?.Count ?? 0;
+
+                float popularityScore = (likesCount * 5.0f) + (commentsCount * 8.0f);
 
                 var daysOld = (DateTime.UtcNow - post.UploadDate).TotalDays;
-                float timeDecay = (float)(1.0 / (1.0 + (daysOld / 30.0))); 
+                float timeDecay = (float)(1.0 / (1.0 + (daysOld / 30.0)));
 
                 float totalScore = ((tagScore * 0.4f) + (popularityScore * 0.6f)) * timeDecay;
 
@@ -64,7 +75,6 @@ namespace Services.Services
             .ToList();
 
             return _mapper.Map<List<PostGetDto>>(scoredPosts);
-
         }
 
         public async Task UpdateUserPreferenceAsync(int userId, int targetId, InteractionType type, bool isRemoval)
