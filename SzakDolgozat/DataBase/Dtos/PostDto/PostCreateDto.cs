@@ -14,6 +14,7 @@ namespace DataBase.Dtos.PostDto
         public string? Content { get; set; }
         public int UserId { get; set; }
         public List<string>? Tags { get; set; } = new List<string>();
+        public int? GroupId { get; set; }
         public ICollection<ImageGetDto>? Images { get; set; } = new List<ImageGetDto>();
         public ContentType ContentType { get; set; }
 

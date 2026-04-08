@@ -2,6 +2,7 @@
 using DataBase.Dtos;
 using DataBase.Dtos.CommentDto;
 using DataBase.Dtos.FollowDto;
+using DataBase.Dtos.GroupDto;
 using DataBase.Dtos.ImageDto;
 using DataBase.Dtos.LikeDto;
 using DataBase.Dtos.PostDto;
@@ -67,8 +68,11 @@ namespace Services.Mapper
             // Likes -> LikeGetDto
             CreateMap<Likes, LikeGetDto>();
 
-            
-           
+            CreateMap<Group, GetGroupDto>()
+                .ForMember(dest => dest.CreatorName, opt => opt.MapFrom(src => src.Creator.FirstName + " " + src.Creator.LastName))
+                .ForMember(dest => dest.AllowedTagNames, opt => opt.MapFrom(src => src.AllowedTags.Select(at => at.Tag.Name)))
+                .ForMember(dest => dest.MemberCount, opt => opt.MapFrom(src => src.Members.Count));
+
 
         }
     }

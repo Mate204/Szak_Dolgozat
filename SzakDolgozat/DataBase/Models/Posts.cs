@@ -24,7 +24,9 @@ namespace DataBase.Models
         public DateTime UploadDate { get; set; }
         public bool Deleted { get; set; } = false;
         public byte[]? VectorData { get; set; }
-
+        public int? GroupId { get; set; } 
+        
+        public Group? Group { get; set; }
         public ICollection<Comments> Comments { get; set; } = new List<Comments>();
         public ICollection<Likes> Likes { get; set; } = new List<Likes>();
         public ICollection<Images> Images { get; set; } = new List<Images>();

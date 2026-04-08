@@ -30,8 +30,8 @@ namespace DataBase.Models
         public ICollection<Follows> Followers { get; set; } = new List<Follows>();
         public ICollection<Comments> Comments { get; set; } = new List<Comments>();
         public ICollection<Likes> Likes { get; set; } = new List<Likes>();
-
         public ICollection<RecommendationData> RecommendationDatas { get; set; } = new List<RecommendationData>();
+        public ICollection<GroupMember> GroupMember { get; set; }
 
     }
 }

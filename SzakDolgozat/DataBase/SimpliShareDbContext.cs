@@ -15,14 +15,17 @@ namespace DataBase
         public DbSet<Comments> Comments { get; set; }
         public DbSet<Likes> Likes { get; set; }
         public DbSet<Images> Images { get; set; }
-        public DbSet<Follows> Follows { get; set; } 
+        public DbSet<Follows> Follows { get; set; }
         public DbSet<ImageEmbedding> ImageEmbedding { get; set; }
         public DbSet<RecommendationData> RecommendationData { get; set; }
         public DbSet<PostTags> PostTags { get; set; }
         public DbSet<Tags> Tags { get; set; }
+        public DbSet<Group> Groups { get; set; }
+        public DbSet<GroupMember> GroupMembers { get; set; }
+        public DbSet<GroupAllowedTag> GroupAllowedTags { get; set; }
         public SimpliShareDbContext(DbContextOptions<SimpliShareDbContext> options) : base(options)
         {
-            
+
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -59,6 +62,10 @@ namespace DataBase
                       .WithMany(u => u.Posts)
                       .HasForeignKey(e => e.UserId)
                       .OnDelete(DeleteBehavior.Restrict);
+                entity.HasOne(e => e.Group)
+                       .WithMany(g => g.Posts)
+                       .HasForeignKey(e => e.GroupId)
+                       .OnDelete(DeleteBehavior.SetNull);
 
             });
 
@@ -94,7 +101,7 @@ namespace DataBase
                       .WithMany(p => p.Likes)
                       .HasForeignKey(e => e.PostId)
                       .OnDelete(DeleteBehavior.Restrict);
-                
+
             });
 
             modelBuilder.Entity<Images>(entity =>
@@ -122,7 +129,7 @@ namespace DataBase
                       .WithMany(u => u.Followers)
                       .HasForeignKey(e => e.FollowedId)
                       .OnDelete(DeleteBehavior.Restrict);
-                      
+
             });
 
             modelBuilder.Entity<ImageEmbedding>(entity =>
@@ -174,6 +181,52 @@ namespace DataBase
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Name).IsRequired();
                 entity.HasIndex(e => e.Name).IsUnique();
+            });
+
+            modelBuilder.Entity<GroupMember>(entity =>
+            {
+                entity.HasKey(e => new
+                {
+                    e.UserId,
+                    e.GroupId
+                });
+                entity.HasOne(e => e.User)
+                      .WithMany(u => u.GroupMember)
+                      .HasForeignKey(e => e.UserId)
+                      .OnDelete(DeleteBehavior.Restrict);
+                entity.HasOne(gm => gm.Group)
+                       .WithMany(g => g.Members)
+                       .HasForeignKey(gm => gm.GroupId)
+                       .OnDelete(DeleteBehavior.Cascade);
+            });
+
+            modelBuilder.Entity<GroupAllowedTag>(entity =>
+            {
+                entity.HasKey(e => new
+                {
+                    e.GroupId,
+                    e.TagId
+                });
+                entity.HasOne(gat => gat.Group)
+                        .WithMany(g => g.AllowedTags)
+                        .HasForeignKey(gat => gat.GroupId);
+                entity.HasOne(gat => gat.Tag)
+                        .WithMany()
+                        .HasForeignKey(gat => gat.TagId);
+
+            });
+
+            modelBuilder.Entity<Group>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Name).IsRequired().HasMaxLength(100);
+                entity.Property(e => e.Description).HasMaxLength(500);
+                entity.Property(e => e.ImagePath).HasMaxLength(255);
+                entity.Property(e => e.IsPrivate).IsRequired();
+                entity.HasOne(g => g.Creator)
+                        .WithMany()
+                        .HasForeignKey(g => g.CreatorId)
+                        .OnDelete(DeleteBehavior.Restrict);
             });
         }
     }

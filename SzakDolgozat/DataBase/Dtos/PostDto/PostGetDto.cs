@@ -17,6 +17,7 @@ namespace DataBase.Dtos.PostDto
         public UserPublicGetDto User { get; set; }
         public string Title { get; set; }
         public string? TextContent { get; set; }
+        public int? GroupId { get; set; }
         public ContentType ContentType { get; set; }
         public DateTime UploadDate { get; set; }
         public ICollection<ImageGetDto>? Images { get; set; }

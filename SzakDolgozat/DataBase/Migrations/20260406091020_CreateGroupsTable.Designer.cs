@@ -4,6 +4,7 @@ using DataBase;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataBase.Migrations
 {
     [DbContext(typeof(SimpliShareDbContext))]
-    partial class SimpliShareDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260406091020_CreateGroupsTable")]
+    partial class CreateGroupsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -129,7 +132,7 @@ namespace DataBase.Migrations
 
                     b.HasIndex("TagsId");
 
-                    b.ToTable("GroupAllowedTags");
+                    b.ToTable("GroupAllowedTag");
                 });
 
             modelBuilder.Entity("DataBase.Models.GroupMember", b =>

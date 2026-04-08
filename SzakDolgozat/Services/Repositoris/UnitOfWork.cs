@@ -21,6 +21,9 @@ namespace Services.Repositoris
         IRepository<RecommendationData> RecommendationDataRepository { get; }
         IRepository<Tags> TagsRepository { get; }
         IRepository<PostTags> PostTagsRepository {  get; }
+        IRepository<Group> GroupRepository { get; }
+        IRepository<GroupMember> GroupMemberRepository { get; }
+        IRepository<GroupAllowedTag> GroupAllowedTagRepository { get; }
         Task<int> SaveAsync();
     }
     public class UnitOfWork : IUnitOfWork
@@ -36,6 +39,9 @@ namespace Services.Repositoris
         public IRepository<RecommendationData> RecommendationDataRepository { get; }
         public IRepository<Tags> TagsRepository { get; }
         public IRepository<PostTags> PostTagsRepository { get; }
+        public IRepository<Group> GroupRepository { get; }
+        public IRepository<GroupMember> GroupMemberRepository { get; }
+        public IRepository<GroupAllowedTag> GroupAllowedTagRepository { get; }
         public UnitOfWork(SimpliShareDbContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
@@ -49,6 +55,9 @@ namespace Services.Repositoris
             RecommendationDataRepository = new Repository<RecommendationData>(context);
             TagsRepository = new Repository<Tags>(context);
             PostsRepository = new Repository<Posts>(context);
+            GroupRepository = new Repository<Group>(context);
+            GroupMemberRepository = new Repository<GroupMember>(context);
+            GroupAllowedTagRepository = new Repository<GroupAllowedTag>(context);
         }
         public async Task<int> SaveAsync()
         {

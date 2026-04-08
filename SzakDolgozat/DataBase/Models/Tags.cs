@@ -12,5 +12,6 @@ namespace DataBase.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public ICollection<PostTags> PostsTags { get; set; } = new List<PostTags>();
+        public ICollection<GroupAllowedTag> GroupAllowedTags { get; set; }
     }
 }
