@@ -69,15 +69,16 @@ function Explore() {
 
     const handleFollowToggle = async (targetUserId) => {
         try {
+            console.log('currentUser.id:', currentUser.id, 'targetUserId:', targetUserId, 'type:', typeof currentUser.id, typeof targetUserId);
             const isFollowing = followStates[targetUserId];
             if (isFollowing) {
-                await followAPI.unfollowUser(currentUser.id, targetUserId);
+                await followAPI.unfollowUser(parseInt(currentUser.id),parseInt(targetUserId));
             } else {
-                await followAPI.followUser(currentUser.id, targetUserId);
+                await followAPI.followUser(parseInt(currentUser.id),parseInt(targetUserId));
             }
             setFollowStates(prev => ({ ...prev, [targetUserId]: !isFollowing }));
         } catch (err) {
-            console.error('Error toggling follow:', err);
+            console.error('Error toggling follow:', err.response?.data);
         }
     };
 

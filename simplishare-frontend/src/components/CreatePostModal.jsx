@@ -5,7 +5,7 @@ import { postAPI } from '../services/api';
 import { X, Image as ImageIcon, Type, Grid } from 'lucide-react';
 import './CreatePostModal.css';
 
-function CreatePostModal({ isOpen, onClose, onPostCreated }) {
+function CreatePostModal({ isOpen, onClose, onPostCreated, groupId = null }) {
     const { user } = useAuth();
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
@@ -86,6 +86,7 @@ function CreatePostModal({ isOpen, onClose, onPostCreated }) {
             return;
         }
 
+
         try {
             setLoading(true);
 
@@ -96,6 +97,9 @@ function CreatePostModal({ isOpen, onClose, onPostCreated }) {
             formData.append('UserId', user.id);
             formData.append('ContentType', contentType);
 
+            if (groupId) {
+                formData.append('GroupId', groupId);
+            }
             // Append images
             selectedFiles.forEach((file) => {
                 formData.append('images', file);
@@ -110,7 +114,7 @@ function CreatePostModal({ isOpen, onClose, onPostCreated }) {
                 onPostCreated();
             }
         } catch (err) {
-            console.error('Error creating post:', err);
+            console.error('Error creating post:', err.response?.data);
             setError(err.response?.data?.message || 'Failed to create post. Please try again.');
         } finally {
             setLoading(false);

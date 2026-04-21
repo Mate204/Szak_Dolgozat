@@ -5,6 +5,7 @@ import { postAPI } from '../services/api';
 import Navbar from '../components/Navbar';
 import PostCard from '../components/PostCard';
 import CreatePostModal from '../components/CreatePostModal';
+import GroupSidebar from '../components/GroupSidebar';
 import './Feed.css';
 
 function Feed() {
@@ -16,7 +17,6 @@ function Feed() {
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
     const pageSize = 10;
 
-    // Fetch feed posts
     useEffect(() => {
         fetchFeed();
     }, [pageNumber]);
@@ -26,7 +26,6 @@ function Feed() {
             setLoading(true);
             setError(null);
             const response = await postAPI.getFeed(user.id, pageNumber, pageSize);
-            console.log('First post isLikedByUser:', response.data[0]?.isLikedByUser);
             setPosts(response.data);
         } catch (err) {
             setError('Failed to load feed. Please try again.');
@@ -37,15 +36,13 @@ function Feed() {
     };
 
     const handleCreatePost = () => {
-        console.log('Create post clicked');
         setIsCreateModalOpen(true);
     };
 
-        const handlePostCreated = () => {
-            setPageNumber(1);
-            setPosts([]); // Clear first so pageNumber=1 triggers fresh fetch
-
-        };
+    const handlePostCreated = () => {
+        setPageNumber(1);
+        setPosts([]);
+    };
 
     const handlePostDeleted = () => {
         fetchFeed();
@@ -61,11 +58,19 @@ function Feed() {
                 onPostCreated={handlePostCreated}
             />
 
-            <div className="feed-container">
-                <div className="feed-content">
+            {/* Page body: sidebar + feed */}
+            <div className="feed-body">
+
+                {/* Left sidebar */}
+                <div className="feed-sidebar">
+                    <GroupSidebar />
+                </div>
+
+                {/* Main feed */}
+                <div className="feed-main">
                     <h2 className="feed-title">Your Feed</h2>
 
-                    {/* Loading State */}
+                    {/* Loading */}
                     {loading && (
                         <div className="feed-loading">
                             <div className="spinner"></div>
@@ -73,7 +78,7 @@ function Feed() {
                         </div>
                     )}
 
-                    {/* Error State */}
+                    {/* Error */}
                     {error && (
                         <div className="feed-error">
                             <p>{error}</p>
@@ -83,7 +88,7 @@ function Feed() {
                         </div>
                     )}
 
-                    {/* Empty State */}
+                    {/* Empty */}
                     {!loading && !error && posts.length === 0 && (
                         <div className="feed-empty">
                             <h3>No posts yet</h3>
@@ -94,7 +99,7 @@ function Feed() {
                         </div>
                     )}
 
-                    {/* Posts List */}
+                    {/* Posts */}
                     {!loading && !error && posts.length > 0 && (
                         <div className="posts-list">
                             {posts.map((post) => (
@@ -107,7 +112,7 @@ function Feed() {
                         </div>
                     )}
 
-                    {/* Load More Button */}
+                    {/* Load More */}
                     {!loading && posts.length >= pageSize && (
                         <button
                             className="btn btn-secondary load-more-btn"
@@ -117,10 +122,10 @@ function Feed() {
                         </button>
                     )}
                 </div>
+
             </div>
         </div>
     );
 }
-
 
 export default Feed;

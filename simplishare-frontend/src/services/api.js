@@ -187,4 +187,33 @@ export const recommendationAPI = {
         api.get('/Recommendation/discover', { params: { count } }),
 };
 
+// ========== GROUP API CALLS ==========
+export const groupAPI = {
+    // Get all groups
+    getAllGroups: () => api.get('/Group/all'),
+
+    // Get my groups
+    getMyGroups: () => api.get('/Group/my-groups'),
+
+    // Create group
+    createGroup: (groupData) => api.post('/Group', groupData),
+
+    // Join group
+    joinGroup: (groupId) => api.post(`/Group/${groupId}/join`),
+
+    // Get group members
+    getGroupMembers: (groupId) => api.get(`/Group/${groupId}/members`),
+
+    // Approve member
+    approveMember: (groupId, targetUserId) =>
+        api.put(`/Group/${groupId}/approve/${targetUserId}`),
+
+    // Get group posts
+    getGroupPosts: (groupId) => api.get(`/Group/${groupId}/posts`),
+};
+// ========== TAGS API CALLS ==========
+export const tagsAPI = {
+    getAllTags: () => api.get('/Tags'),
+};
+
 export default api;

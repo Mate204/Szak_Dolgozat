@@ -3,16 +3,42 @@
 .feed-layout {
     min-height: 100vh;
     background-color: var(--bg-secondary);
+    display: flex;
+    flex-direction: column;
 }
 
-.feed-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 24px 16px;
+/* Body: sidebar + feed side by side */
+.feed-body {
+    display: flex;
+    flex: 1;
 }
 
-.feed-content {
-    max-width: 700px;
+/* ── Left Sidebar ── */
+.feed-sidebar {
+    width: 260px;
+    flex-shrink: 0;
+    height: calc(100vh - 57px);
+    position: sticky;
+    top: 57px;
+    overflow-y: auto;
+    background-color: var(--bg-primary);
+    border-right: 1px solid var(--border-color);
+}
+
+.feed-sidebar::-webkit-scrollbar {
+    width: 4px;
+}
+
+.feed-sidebar::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 999px;
+}
+
+/* ── Main Feed ── */
+.feed-main {
+    flex: 1;
+    padding: 24px 32px;
+    max-width: 780px;
     margin: 0 auto;
 }
 
@@ -78,33 +104,28 @@
     gap: 16px;
 }
 
-/* Temporary placeholder for posts (we'll replace this with PostCard component) */
-.post-card-placeholder {
-    background-color: var(--bg-primary);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-lg);
-    padding: 20px;
-}
-
-.post-card-placeholder h3 {
-    font-size: 18px;
-    color: var(--text-primary);
-    margin-bottom: 8px;
-}
-
-.post-card-placeholder p {
-    color: var(--text-secondary);
-    font-size: 14px;
-    margin-bottom: 8px;
-}
-
-.post-card-placeholder small {
-    color: var(--text-tertiary);
-    font-size: 12px;
-}
-
-/* Load More Button */
+/* Load More */
 .load-more-btn {
     width: 100%;
     margin-top: 16px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .feed-body {
+        flex-direction: column;
+    }
+
+    .feed-sidebar {
+        width: 100%;
+        height: auto;
+        position: static;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .feed-main {
+        padding: 16px;
+        max-width: 100%;
+    }
 }

@@ -30,7 +30,7 @@ function Following() {
 
     const handleUnfollow = async (targetUserId) => {
         try {
-            await followAPI.unfollowUser(user.id, targetUserId);
+            await followAPI.unfollowUser(parseInt(user.id),parseInt(targetUserId));
             // Remove from local state
             setUsers(users.filter(u => u.id !== targetUserId));
         } catch (error) {
