@@ -11,6 +11,8 @@ import Following from './pages/Following';
 import Explore from './pages/Explore';
 import Settings from './pages/Settings';
 import SearchResults from './pages/SearchResults';
+import GroupPage from './pages/GroupPage';
+
 
 // Protected Route Component - only accessible when logged in
 function ProtectedRoute({ children }) {
@@ -105,6 +107,15 @@ function AppContent() {
                     </ProtectedRoute>
                 }
             />
+            <Route
+                path="/group/:groupId"
+                element={
+                    <ProtectedRoute>
+                        <GroupPage />
+                    </ProtectedRoute>
+                }
+            />
+
 
             {/* Catch all - redirect to login */}
             <Route path="*" element={<Navigate to="/login" replace />} />
